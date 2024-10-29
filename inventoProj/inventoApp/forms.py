@@ -1,9 +1,9 @@
 from django import forms
-from . models import Item
+from . models import Item_Model
 
 class ItemForm(forms.ModelForm):
     class Meta:
-        model = Item
+        model = Item_Model
         fields = '__all__'
         # labels -> dictionary of different key-value pair sets
         labels = {
