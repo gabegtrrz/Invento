@@ -35,7 +35,7 @@ def item_create_view(request):
 # Read View
 def item_list_view(request):
     items = Item_Model.objects.all()
-    return render(request, 'item_list', {'items':items})
+    return render(request, 'InventoApp/item_list.html', {'items':items})
 
 
 # Update View
@@ -49,7 +49,7 @@ def item_update_view(request, item_id):
         if form.is_valid():
             form.save()
             return redirect('item_list')
-    return render(request, 'item_form', {'form':form})
+    return render(request, 'InventoApp/item_form.html', {'form':form})
 
 
 # Delete View
@@ -58,4 +58,4 @@ def item_delete_view(request, item_id):
     if request.method == 'POST':
         item.delete()
         return redirect('item_list')
-    return render(request, 'item_confirm_delete', {'item':item})
+    return render(request, 'InventoApp/item_confirm_delete.html', {'item':item})
