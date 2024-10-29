@@ -13,7 +13,7 @@ def index_view(request):
 
 
 # Create View
-def create_view(request):
+def item_create_view(request):
 # this is where we want to instantiate/create an item RECORD/Object,
 # or facilitate its creation by providing the form to the user.
 
@@ -51,4 +51,11 @@ def item_update_view(request, item_id):
             return redirect('item_list')
     return render(request, 'item_form', {'form':form})
 
+
 # Delete View
+def item_delete_view(request, item_id):
+    item = Item_Model.objects.get(item_id=item_id)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('item_list')
+    return render(request, 'item_confirm_delete', {'item':item})
