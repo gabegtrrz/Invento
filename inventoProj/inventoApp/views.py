@@ -39,6 +39,16 @@ def item_list_view(request):
 
 
 # Update View
-
+# Get item by unique identifier = item_id number
+def item_update_view(request, item_id):
+    item = Item_Model.objects.get(item_id=item_id)
+    form = ItemForm(instance=item)
+    if request.method == 'POST':
+        # Binding form data FROM the request TO the specific & existing item instance -- the second parameter.
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('item_list')
+    return render(request, 'item_form', {'form':form})
 
 # Delete View
