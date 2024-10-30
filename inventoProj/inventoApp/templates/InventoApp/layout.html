@@ -7,6 +7,8 @@ Note that you used bootstrap and jquery CDN
 
 {% endcomment %}
 
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +21,12 @@ Note that you used bootstrap and jquery CDN
 <body>
     
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        {% comment %}
         <a href="{% url "index" %}" class="navbar-brand">
-            Inventó
+            <img href="{% url "index" %}" src="{% static "images/logo.png" %}" style='width: 100px' alt="Invento Logo">
         </a>
+        {% endcomment %}
+        
         <button class="navbar-toggler" type='button' data-toggle='collapse' data-target="#navbarNav" aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle Navigation'>
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,7 +48,8 @@ Note that you used bootstrap and jquery CDN
     </nav>
     {% comment %} content block as template {% endcomment %}
     <div class="container">
-        {% block content %}{% endblock content %}
+        {% block content %}
+        {% endblock content %}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>

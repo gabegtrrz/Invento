@@ -1,4 +1,18 @@
 {% extends "InventoApp/layout.html" %}
 {% load static %}
 
-{% block title %} Home {% endblock title %} Home 
+{% block title %} Inventó Home {% endblock title %} 
+
+{% block content %}
+    <div class="jumbotron text-center">
+        
+        <img href="{% url "index" %}" src="{% static "images/logo-cropped.png" %}" style='height: 50px' alt="Invento Logo">
+        <p class="lead">Inventory made simple.</p>
+
+        <hr class="my-4">
+        <a href="{% url "item_list" %}" class="btn btn-primary btn-lg">View Items</a>
+        
+        
+    </div>
+{% endblock content %}
+
