@@ -19,6 +19,6 @@ class ItemForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'placeholder':'Item Name', 'class':'form-control'}),
             'sku': forms.TextInput(attrs={'placeholder':'e.g. ABC_001', 'class':'form-control'}),
             'price': forms.NumberInput(attrs={'placeholder':'Price', 'class':'form-control'}),
-            'quantity': forms.NumberInput(attrs={'placeholder':'e.g 1', 'class':'form-control'}),
-            'supplier': forms.TextInput(attrs={'placeholder':'e.g Acme Inc.', 'class':'form-control'}),
+            'quantity': forms.NumberInput(attrs={'placeholder':'e.g. 1', 'class':'form-control'}),
+            'supplier': forms.TextInput(attrs={'placeholder':'e.g. Acme Inc.', 'class':'form-control'}),
         }

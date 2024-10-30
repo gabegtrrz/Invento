@@ -10,7 +10,11 @@
         <p class="lead">Inventory made simple.</p>
 
         <hr class="my-4">
-        <a href="{% url "item_list" %}" class="btn btn-primary btn-lg">View Items</a>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <a href="{% url "item_list" %}" class="btn btn-dark m-3 w-50 center-align">View Inventory</a>
+            <a href="{% url "item_create" %}" class="btn btn-dark m-3 w-50">Add Item</a>
+
+        </div>
         
         
     </div>
