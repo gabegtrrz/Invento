@@ -21,7 +21,7 @@ def item_create_view(request):
 
     # Logic when POST
     if request.method == 'POST':
-        form = request.POST
+        form = ItemForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('item_list')
