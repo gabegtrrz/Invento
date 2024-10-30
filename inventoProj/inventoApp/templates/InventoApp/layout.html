@@ -26,6 +26,7 @@ Note that you used bootstrap and jquery CDN
         .navbar-brand, .nav-link{
             color: #fff !important;
         }
+        
         .container{
             margin-top: 20px;
         }
@@ -102,33 +103,38 @@ Note that you used bootstrap and jquery CDN
 <body>
     
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        {% comment %}
-        <a href="{% url "index" %}" class="navbar-brand">
-            <img href="{% url "index" %}" src="{% static "images/logo.png" %}" style='width: 100px' alt="Invento Logo">
-        </a>
-        {% endcomment %}
+        
+        
+            <a class="navbar-brand" href="{% url "index" %}">
+                <img src="{% static "images/logo.png" %}" width="70" class ="rounded" alt="Invento Logo">
+            </a>
+        
         
         <button class="navbar-toggler" type='button' data-toggle='collapse' data-target="#navbarNav" aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle Navigation'>
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id='navbarNav'>
             <ul class="navbar-nav">
+                
+                <li class="nav-item text-wrap">
+                    <a href="{% url "item_list" %}" class="nav-link">
+                        View Inventory
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{% url "item_create" %}" class="nav-link">
                         Add Item
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{% url "item_list" %}" class="nav-link">
-                        View Inventory
-                    </a>
-                </li>
+                
+                
             </ul>
         </div>
     </nav>
     {% comment %} content block as template {% endcomment %}
-    <div class="container">
+    <div class="container mt-5 pt-4">
         {% block content %}
         {% endblock content %}
     </div>
