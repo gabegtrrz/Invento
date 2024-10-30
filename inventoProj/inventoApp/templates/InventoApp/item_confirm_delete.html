@@ -1,10 +1,31 @@
 {% extends "InventoApp/layout.html" %}
-{% load static %}
 
 {% block title %}
-title
+Deleting Item
 {% endblock title %} 
 
 {% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center">
 
+        <h2 class="text-center">Are you sure you want to delete this item?</h2>
+    
+        <div class="card mt-3 mb-5 p-3 d-flex" style='width:80%;'>
+            <h4>{{item.name}}</h4>
+            <div class="d-flex flex-column">
+                <ul>
+                    <li>ID: {{item.item_id}}</li>
+                    <li>SKU: {{item.sku}}</li>
+                    <li>Quantity: {{item.quantity}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-custom-delete">Delete</button>
+            <a href="{% url "item_list" %}" class="btn btn-custom2">Cancel</a>
+        </form>
+
+    </div>  
+    
 {% endblock content %}

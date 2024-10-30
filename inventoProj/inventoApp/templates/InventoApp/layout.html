@@ -37,7 +37,7 @@ Note that you used bootstrap and jquery CDN
             font-size: 14px;
         }
 
-
+        {% comment %}  Buttons {% endcomment %}
         
         .btn-custom1 {
             background-color: #335c67;
@@ -72,6 +72,30 @@ Note that you used bootstrap and jquery CDN
             transform: scale(1.05px);
             color: white;
             text-decoration: none;
+        }
+
+        .btn-custom2 {
+            background-color: #495057;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-custom2:hover {
+            background-color: #343a40;
+            transform: scale(1.05px);
+            color: white;
+            text-decoration: none;
+        }
+
+        {% comment %} Card {% endcomment %}
+
+        .card-custom{
+            padding-left: ($spacer * .25)
+        }
 
     </style>
 </head>
