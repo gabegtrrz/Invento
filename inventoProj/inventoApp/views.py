@@ -33,9 +33,9 @@ def register_view(request):
     return render(request, 'accounts/register.html', {'form':form})
 
 def login_view(request):
-    if request.method == 'post':
-        username = request.post.get('username')
-        password = request.post.get('password')
+    if request.method == 'POST': 
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
@@ -52,6 +52,7 @@ def logout_view(request):
         logout(request)
         messages.info(request, 'Logged out successfully.')
         return redirect('login')
+    return redirect('index')
 
 
 # CRUD Inventory Feature Views
@@ -59,6 +60,7 @@ def logout_view(request):
 
 
 # Create View
+@login_required
 def item_create_view(request):
 # this is where we want to instantiate/create an item RECORD/Object,
 # or facilitate its creation by providing the form to the user.
@@ -79,6 +81,7 @@ def item_create_view(request):
 
 
 # Read View
+@login_required
 def item_list_view(request):
     items = Item_Model.objects.all()
     return render(request, 'InventoApp/item_list.html', {'items':items})
@@ -86,6 +89,7 @@ def item_list_view(request):
 
 # Update View
 # Get item by unique identifier = item_id number
+@login_required
 def item_update_view(request, item_id):
     item = Item_Model.objects.get(item_id=item_id)
     form = ItemForm(instance=item)
@@ -99,6 +103,7 @@ def item_update_view(request, item_id):
 
 
 # Delete View
+@login_required
 def item_delete_view(request, item_id):
     item = Item_Model.objects.get(item_id=item_id)
     if request.method == 'POST':
