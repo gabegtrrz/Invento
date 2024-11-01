@@ -4,18 +4,23 @@
 {% block title %} Inventó Home {% endblock title %} 
 
 {% block content %}
-    <div class="jumbotron text-center">
+{% include "navs/nav_home.html" %}
+<div class="jumbotron text-center">
         
         <img class ="rounded" href="{% url "index" %}" src="{% static "images/logo-cropped.png" %}" width: 80% alt="Invento Logo">
         <p class="lead">Inventory made simple.</p>
 
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <a href="{% url "item_list" %}" class=" btn btn-dark m-3 w-50 center-align">View Inventory</a>
-            <a href="{% url "item_create" %}" class=" btn btn-dark m-3 w-50">Add Item</a>
+            <a href="{% url "login" %}" class=" btn btn-dark m-3 w-50 center-align">Login</a>
+            <div class="text-center mt-3">
+                <p class="mb-0">Don't have an account? 
+                    <a href="{% url 'register' %}">Register here</a>
+                </p>
+            </div>
 
         </div>
         
         
-    </div>
+</div>
 {% endblock content %}
 

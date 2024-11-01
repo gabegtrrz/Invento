@@ -4,8 +4,8 @@
 {% block title %}
     Item Form
 {% endblock title %} 
-
 {% block content %}
+{% include "navs/nav.html" %}
     <h1 class="text-center">Item Form</h1>
     <form method="post" class='jumbotron m-3'>
         {% csrf_token %}

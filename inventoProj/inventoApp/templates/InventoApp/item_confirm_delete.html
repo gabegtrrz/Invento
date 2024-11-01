@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
-
+{% load static %}
 {% block title %}
 Deleting Item
 {% endblock title %} 
-
 {% block content %}
+{% include "navs/nav.html" %}
     <div class="d-flex flex-column justify-content-center align-items-center">
 
         <h2 class="text-center">Are you sure you want to delete this item?</h2>
