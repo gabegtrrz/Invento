@@ -4,14 +4,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-
-
-
 # User Authentication Feature Models
 
 class User(AbstractUser):
     business_name = models.CharField(max_length=100, blank=True)
-
+    def __str__(self): return self.username
 
 
 # CRUD Inventory Feature Models
