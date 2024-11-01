@@ -22,22 +22,25 @@
                         {% endfor %}
                     {% endif %}
 
-                    <form method="post">
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="form-group">
-                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                {{ field|addclass:'form-control' }}
-                                {% if field.errors %}
-                                    <div class="invalid-feedback d-block">
-                                        {{ field.errors }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
-                    </form>
-                    
+                    <form method="post"> 
+                        {% csrf_token %} 
+                        <div class="form-group"> 
+                            <label for="username">Username</label> 
+                            <input type="text" class="form-control" id="username" name="username" required> 
+                        </div> 
+                        <div class="form-group"> 
+                            <label for="email">Email</label> 
+                            <input type="email" class="form-control" id="email" name="email" required> 
+                        </div> 
+                        <div class="form-group"> 
+                            <label for="password1">Password</label> 
+                            <input type="password" class="form-control" id="password1" name="password1" required> </div> 
+                            <div class="form-group"> 
+                                <label for="password2">Confirm Password</label> 
+                                <input type="password" class="form-control" id="password2" name="password2" required> 
+                            </div> 
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </form>
                     <div class="text-center mt-3">
                         <p class="mb-0">Already have an account? 
                             <a href="{% url 'login' %}">Login here</a>
