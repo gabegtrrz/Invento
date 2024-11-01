@@ -131,6 +131,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'item_list'
 LOGOUT_REDIRECT_URL = 'login'
 
+AUTH_USER_MODEL = 'inventoApp.User'
 
 
 
