@@ -4,12 +4,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout 
 from django.contrib.auth.decorators import login_required
-
 from django.contrib import messages
 
 # App Classes
 from . models import Item_Model
-from . forms import ItemForm
+from . forms import ItemForm, UserRegistrationForm
 
 
 # Create your views here.
@@ -20,17 +19,44 @@ def index_view(request):
 
 # User Authentication Feature Views
 
+def register_view(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save() # becomes a User object/instance
+            login(request, user)
+            messages.success(request, 'Registration Successful!')
+            return redirect('item_list')
+    else:
+        form = UserRegistrationForm()
+
+    return render(request, 'accounts/register.html', {'form':form})
+
 def login_view(request):
+    if request.method == 'post':
+        username = request.post.get('username')
+        password = request.post.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('item_list')
+        else:
+            messages.error(request, 'Invalid username or password.')
+
     return render(request, 'accounts/login.html')
 
-def register_view(request):
-    pass
 
 def logout_view(request):
-    pass
+    if request.method == 'POST':
+        logout(request)
+        messages.info(request, 'Logged out successfully.')
+        return redirect('login')
 
 
 # CRUD Inventory Feature Views
+
+
 
 # Create View
 def item_create_view(request):
