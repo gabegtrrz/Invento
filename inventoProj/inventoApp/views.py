@@ -52,7 +52,7 @@ def logout_view(request):
         logout(request)
         messages.info(request, 'Logged out successfully.')
         return redirect('login')
-    return redirect('index')
+    
 
 
 # CRUD Inventory Feature Views
