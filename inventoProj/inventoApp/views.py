@@ -1,5 +1,12 @@
 from django.shortcuts import render, redirect
 
+# User Authentication Feature Imports
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout 
+from django.contrib.auth.decorators import login_required
+
+from django.contrib import messages
+
 # App Classes
 from . models import Item_Model
 from . forms import ItemForm
@@ -11,6 +18,19 @@ from . forms import ItemForm
 def index_view(request):
     return render(request, 'InventoApp/index.html')
 
+# User Authentication Feature Views
+
+def login_view(request):
+    return render(request, 'accounts/login.html')
+
+def register_view(request):
+    pass
+
+def logout_view(request):
+    pass
+
+
+# CRUD Inventory Feature Views
 
 # Create View
 def item_create_view(request):
