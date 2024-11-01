@@ -1,6 +1,31 @@
 from django import forms
+
+# User Authentication Feature Imports
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+# make sure to have configured your settings.py AUTH_USER_MODEL 
+# Format: 'app_name.Model_name'
+
 from . models import Item_Model
 
+# User Authentication Feature Forms
+
+class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField()
+    User = get_user_model()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        
+    
+
+
+
+
+
+
+# CRUD Inventory Feature Forms
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item_Model
