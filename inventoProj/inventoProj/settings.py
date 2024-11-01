@@ -125,6 +125,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# Authentication URL Settings
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'item_list'
+LOGOUT_REDIRECT_URL = 'login'
+
+
 
 
 # Default primary key field type
@@ -132,5 +138,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Specifies which CSS framework to use for rendering forms
+# This setting specifies which CSS framework to use for rendering forms
 CRISPY_TEMPLATE_PACK='bootstrap5'
