@@ -1,6 +1,21 @@
 from django.db import models
 
-# Create your models here.
+# User Authentication Feature Imports
+from django.contrib.auth.models import AbstractUser
+
+
+
+
+
+# User Authentication Feature Models
+
+class User(AbstractUser):
+    business_name = models.CharField(max_length=100, blank=True)
+
+
+
+# CRUD Inventory Feature Models
+
 class Item_Model(models.Model):
     item_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
