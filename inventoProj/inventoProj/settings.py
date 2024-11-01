@@ -32,10 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'inventoApp.apps.InventoappConfig',
-    'crispy_forms',
-    'crispy_bootstrap5',
-    'dbbackup',
+    "inventoApp.apps.InventoappConfig",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "dbbackup",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -121,22 +121,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-MEDIA_URL = 'images/'
+MEDIA_URL = "images/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # Authentication URL Settings
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'item_list'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "item_list"
+LOGOUT_REDIRECT_URL = "login"
 
-AUTH_USER_MODEL = 'inventoApp.User'
+AUTH_USER_MODEL = "inventoApp.User"
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
+    "django.contrib.auth.backends.ModelBackend",
 ]
-
 
 
 # Default primary key field type
@@ -145,4 +144,4 @@ AUTHENTICATION_BACKENDS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # This setting specifies which CSS framework to use for rendering forms
-CRISPY_TEMPLATE_PACK='bootstrap5'
+CRISPY_TEMPLATE_PACK = "bootstrap5"

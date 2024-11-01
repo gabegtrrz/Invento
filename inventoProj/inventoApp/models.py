@@ -6,12 +6,16 @@ from django.contrib.auth.models import AbstractUser
 
 # User Authentication Feature Models
 
+
 class User(AbstractUser):
     business_name = models.CharField(max_length=100, blank=True)
-    def __str__(self): return self.username
+
+    def __str__(self):
+        return self.username
 
 
 # CRUD Inventory Feature Models
+
 
 class Item_Model(models.Model):
     item_id = models.AutoField(primary_key=True)
@@ -23,5 +27,3 @@ class Item_Model(models.Model):
 
     def __str__(self):
         return f"{self.name} | ID: {self.item_id} | SKU: {self.sku}"
-
-
