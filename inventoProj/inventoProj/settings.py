@@ -133,6 +133,10 @@ LOGOUT_REDIRECT_URL = 'login'
 
 AUTH_USER_MODEL = 'inventoApp.User'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 
 # Default primary key field type
