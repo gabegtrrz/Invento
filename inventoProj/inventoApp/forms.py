@@ -8,16 +8,22 @@ from django.contrib.auth import get_user_model
 
 from . models import Item_Model
 
-# User Authentication Feature Forms
+
+
+
+# User Authentication Feature Forms -----
+
+
+# instantiate user model
+User = get_user_model()
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
-    User = get_user_model()
-
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-        
+
     
 
 
@@ -25,7 +31,7 @@ class UserRegistrationForm(UserCreationForm):
 
 
 
-# CRUD Inventory Feature Forms
+# CRUD Inventory Feature Forms -----
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item_Model
