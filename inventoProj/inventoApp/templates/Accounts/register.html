@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Login{% endblock title %} 
+{% block title %}Register{% endblock title %}
 
 {% block content %}
 <div class="container">
@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center mb-0">Login</h2>
+                    <h2 class="text-center mb-0">Register</h2>
                 </div>
                 <div class="card-body">
                     {% if messages %}
@@ -24,20 +24,23 @@
 
                     <form method="post">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field|addclass:'form-control' }}
+                                {% if field.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
                     </form>
                     
                     <div class="text-center mt-3">
-                        <p class="mb-0">Don't have an account? 
-                            <a href="{% url 'register' %}">Register here</a>
+                        <p class="mb-0">Already have an account? 
+                            <a href="{% url 'login' %}">Login here</a>
                         </p>
                     </div>
                 </div>
