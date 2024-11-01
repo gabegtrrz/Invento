@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'inventoApp.apps.InventoappConfig',
     'crispy_forms',
     'crispy_bootstrap5',
+    'dbbackup',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
