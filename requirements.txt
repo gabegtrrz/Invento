@@ -1,5 +1,4 @@
 asgiref==3.8.1
-black==24.10.0
 click==8.1.7
 colorama==0.4.6
 crispy-bootstrap5==2024.10
