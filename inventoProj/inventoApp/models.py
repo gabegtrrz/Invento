@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from decimal import Decimal
+from django.utils.translation import gettext_lazy as _
 
 # User Authentication Feature Imports
 from django.contrib.auth.models import AbstractUser
@@ -113,8 +114,7 @@ class Movement(models.Model):
     )
     date = models.DateField(auto_now_add=True)
     performed_by = models.CharField(max_length=50)
-    purchase_price = models.DecimalField(
-        _("Purchase Price"), 
+    purchase_price = models.DecimalField(_("Purchase Price"), 
         max_digits=10, 
         decimal_places=2,
         validators=[MinValueValidator(Decimal('0.00'))]
