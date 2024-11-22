@@ -120,7 +120,7 @@ class LotForm(forms.ModelForm):
             ),
         }
 
-class StockInForm(forms.ModelForm):
+class StockInForm(forms.Form):
     item = forms.ModelChoiceField(
         queryset=Item_Model.objects.all,
         widget=forms.Select(attrs={"class": "form-control"}),
@@ -138,7 +138,32 @@ class StockInForm(forms.ModelForm):
         decimalmin_value=0.01
     )
 
-    expiry_date = forms.DateField(required=False)
-    
+    received_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
 
+    expiry_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),required=False
+    )
+
+    notes = forms.CharField(
+        widget=forms.Textarea,
+        max_length=250, 
+        required=False
+    )
+
+class StockOutForm(forms.Form):
+    item = forms.ModelChoiceField(
+        queryset=Item_Model.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    quantity = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        min_value=0.01
+    )
+    notes = forms.CharField(
+        widget=forms.Textarea,
+        max_length=250,
+        required=False)
     
