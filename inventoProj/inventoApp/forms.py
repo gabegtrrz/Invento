@@ -90,6 +90,9 @@ class LotForm(forms.ModelForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
     
+    expiry_date = forms.DateField(required = False)
+
+
     class Meta:
         model = Lot
         fields = [
@@ -97,16 +100,12 @@ class LotForm(forms.ModelForm):
             ]
         labels = {
             "item": "Item",
-            "lot_number": "Lot Number",
             "received_date": "Received Date",
             "expiry_date": "Expiry Date",
             "initial_quantity": "Initial Quantity",
             "unit_cost": "Unit Cost",
         }
         widgets = {
-            "lot_number": forms.TextInput(
-                attrs={"placeholder": "Lot Number", "class": "form-control"}
-            ),
             "received_date": forms.DateInput(
                 attrs={"type": "date", "class": "form-control"}
             ),
@@ -121,7 +120,25 @@ class LotForm(forms.ModelForm):
             ),
         }
 
-# class StockInForm(forms.ModelForm):
-#     class Meta:
-#         model = Movement
-#         fields = 
+class StockInForm(forms.ModelForm):
+    item = forms.ModelChoiceField(
+        queryset=Item_Model.objects.all,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    quantity = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        decimalmin_value=0.01
+    )
+
+    unit_cost = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        decimalmin_value=0.01
+    )
+
+    expiry_date = forms.DateField(required=False)
+    
+
+    
