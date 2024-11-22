@@ -78,16 +78,23 @@ class ItemForm(forms.ModelForm):
             )
         }
 
-class LotForm(forms.ModelForm):
-    class Meta:
-        model = 'Lot'
-        fields = []
-
 
 class LotForm(forms.ModelForm):
     item = forms.ModelChoiceField(
         queryset=Item_Model.objects.all,
         widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    initial_quantity = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        decimalmin_value=0.01
+    )
+    
+    unit_cost = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        decimalmin_value=0.01
     )
     
     expiry_date = forms.DateField(required = False)
