@@ -1,17 +1,34 @@
+# URLS
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
 # User Authentication Feature Imports
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+
+
 from django.contrib import messages
 
+
+# CRUD
+from django.views.generic import (
+    ListView, DetailView, CreateView,
+    UpdateView, DeleteView
+)
+from django.views.generic.edit import FormView
+from django.db import transaction
+
+
 # App Classes
-from .models import Item_Model
-from .forms import ItemForm, UserRegistrationForm
+from .models import Item_Model, Lot, Movement
+from .forms import (
+    ItemForm, UserRegistrationForm, LotForm,
+    StockInForm, StockOutForm
+)
 
 
-# Create your views here.
+
 
 
 # Home View
