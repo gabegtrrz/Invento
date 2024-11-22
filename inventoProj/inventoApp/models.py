@@ -129,7 +129,7 @@ class Movement(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(Decimal('0.00'))]
     )
-    notes = models.TextField(blank=True)
+    notes = models.TextField(max_length=250, blank=True)
     
     def clean(self):
         # evaluates if quantity user wants to move now does not exceed what's left by
