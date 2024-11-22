@@ -41,22 +41,26 @@ class Item_Model(models.Model):
     weight_grams = models.DecimalField(
         max_digits = 10,
         decimal_places = 5,
-        validators=[MinValueValidator(Decimal('0.00'))]
+        validators=[MinValueValidator(Decimal('0.00'))],
+        null=True
     )
     length_cm = models.DecimalField(
         max_digits = 10,
         decimal_places = 2,
-        validators=[MinValueValidator(Decimal('0.00'))]
+        validators=[MinValueValidator(Decimal('0.00'))],
+        null=True
     )
     width_cm = models.DecimalField(
         max_digits = 10,
         decimal_places = 2,
-        validators=[MinValueValidator(Decimal('0.00'))]
+        validators=[MinValueValidator(Decimal('0.00'))],
+        null=True
     )
     height_cm= models.DecimalField(
         max_digits = 10,
         decimal_places = 2,
-        validators=[MinValueValidator(Decimal('0.00'))]
+        validators=[MinValueValidator(Decimal('0.00'))],
+        null=True
     )
 
     def get_available_quantity(self):
@@ -80,7 +84,6 @@ class Lot(models.Model):
     def available_quantity(self):
         used_quantity = sum(movement.quantity for movement in self.movements.filter(movement_type='OUT'))
         return max(self.initial_quantity - used_quantity, 0)
-
     
     class Meta:
         constraints = [
@@ -114,6 +117,7 @@ class Movement(models.Model):
     )
     date = models.DateField(auto_now_add=True)
     performed_by = models.CharField(max_length=50)
+    # supplier = models.CharField(max_length=50)
     purchase_price = models.DecimalField(_("Purchase Price"), 
         max_digits=10, 
         decimal_places=2,
