@@ -87,7 +87,9 @@ class LotForm(forms.ModelForm):
 class LotForm(forms.ModelForm):
     class Meta:
         model = Lot
-        fields = "__all__"
+        fields = [
+            'item', 'lot_number', 'received_date', 'expiry_date', 'initial_quantity', 'unit_cost'
+            ]
         labels = {
             "item": "Item",
             "lot_number": "Lot Number",
@@ -117,4 +119,7 @@ class LotForm(forms.ModelForm):
             ),
         }
 
-class 
+# class MovementForm(forms.ModelForm):
+#     class Meta:
+#         model = Movement
+#         fields
