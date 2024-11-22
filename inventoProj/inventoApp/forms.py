@@ -85,6 +85,11 @@ class LotForm(forms.ModelForm):
 
 
 class LotForm(forms.ModelForm):
+    item = forms.ModelChoiceField(
+        queryset=Item_Model.objects.all,
+        widget="item": forms.Select(attrs={"class": "form-control"})
+    )
+    
     class Meta:
         model = Lot
         fields = [
@@ -99,9 +104,6 @@ class LotForm(forms.ModelForm):
             "unit_cost": "Unit Cost",
         }
         widgets = {
-            "item": forms.Select(
-                attrs={"class": "form-control"}
-            ),
             "lot_number": forms.TextInput(
                 attrs={"placeholder": "Lot Number", "class": "form-control"}
             ),
@@ -119,7 +121,7 @@ class LotForm(forms.ModelForm):
             ),
         }
 
-# class MovementForm(forms.ModelForm):
+# class StockInForm(forms.ModelForm):
 #     class Meta:
 #         model = Movement
-#         fields
+#         fields = 
