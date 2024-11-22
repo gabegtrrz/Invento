@@ -87,7 +87,7 @@ class LotForm(forms.ModelForm):
 class LotForm(forms.ModelForm):
     item = forms.ModelChoiceField(
         queryset=Item_Model.objects.all,
-        widget="item": forms.Select(attrs={"class": "form-control"})
+        widget=forms.Select(attrs={"class": "form-control"}),
     )
     
     class Meta:
