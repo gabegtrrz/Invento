@@ -60,14 +60,14 @@ class InventoryService:
         handles stock out operation following FIFO principle.
         '''
 
-        # Get lots with available quanitity
-        # order themm by received_date (FIFO)
+        # Get lots with available quantity
+        # order them by received_date (FIFO)
         available_lots = Lot.objects.filter(
             item = item,
             available_quantity__gt=0
         ).order_by('received_date')
 
-        # Remaining_quanity will be the remaining needed quantity which we will subtract every quantity we gather from the lots
+        # Remaining_quantity will be the remaining needed quantity which we will subtract every quantity we gather from the lots
         # The goal is to have 0 remaining
         # if Not zero -> error
         remaining_quantity = quantity_needed
