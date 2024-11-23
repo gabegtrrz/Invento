@@ -189,7 +189,7 @@ class MovementDeleteView(DeleteView):
 # ----------
 class LotListView(ListView):
     model = Lot
-    template_name = "templates/InventoApp/lot_confirm_delet.html"
+    template_name = "templates/InventoApp/lot_list.html"
     context_object_name = 'lots'
     paginate_by = 20
 
