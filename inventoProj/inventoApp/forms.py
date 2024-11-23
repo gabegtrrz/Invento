@@ -81,7 +81,7 @@ class ItemForm(forms.ModelForm):
 
 class LotForm(forms.ModelForm):
     item = forms.ModelChoiceField(
-        queryset=Item_Model.objects.all,
+        queryset=Item_Model.objects.all(),
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
@@ -129,7 +129,7 @@ class LotForm(forms.ModelForm):
 
 class StockInForm(forms.Form):
     item = forms.ModelChoiceField(
-        queryset=Item_Model.objects.all,
+        queryset=Item_Model.objects.all(),
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
