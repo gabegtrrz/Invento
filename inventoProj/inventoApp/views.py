@@ -113,7 +113,7 @@ class ItemModelUpdateView(LoginRequiredMixin,UpdateView):
 
 class ItemDeleteView(DeleteView):
     model = Item_Model
-    template_name = 'inventory/item_confirm_delete.html'
+    template_name = 'templates/InventoApp/item_confirm_delete.html'
     success_url = reverse_lazy('item_list')
 
 
@@ -180,13 +180,19 @@ class StockOutView(LoginRequiredMixin, FormView):
 
 class MovementDeleteView(DeleteView):
     model = Movement
-    template_name = 'inventory/movement_confirm_delete.html'
+    template_name = 'templates/InventoApp/movement_confirm_delete.html'
     success_url = reverse_lazy('movement_list')
 
 
 # ----------
 # LOT VIEWS
 # ----------
+class LotListView(ListView):
+    model = Lot
+    template_name = "templates/InventoApp/lot_confirm_delet.html"
+    context_object_name = 'lots'
+    paginate_by = 20
+
 
 class LotUpdateView(LoginRequiredMixin, UpdateView):
     model = Lot
@@ -198,7 +204,7 @@ class LotUpdateView(LoginRequiredMixin, UpdateView):
 
 class LotDeleteView(DeleteView):
     model = Lot
-    template_name = 'inventory/lot_confirm_delete.html'
+    template_name = 'templates/InventoApp/lot_confirm_delete.html'
     success_url = reverse_lazy('lot_list')
 
 
