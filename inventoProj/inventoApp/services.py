@@ -64,7 +64,7 @@ class InventoryService:
         # order themm by received_date (FIFO)
         available_lots = Lot.objects.filter(
             item = item,
-            available_quanitity__gt=0
+            available_quantity__gt=0
         ).order_by('received_date')
 
         # Remaining_quanity will be the remaining needed quantity which we will subtract every quantity we gather from the lots
