@@ -1,5 +1,5 @@
 # Models
-from . models import Lot, Movement
+from .models import Lot, Movement
 
 # Utils
 import uuid
@@ -8,9 +8,8 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 
 
-
 class InventoryService:
-    
+
     @staticmethod
     def generate_lot_number():
         """
@@ -21,41 +20,45 @@ class InventoryService:
 
         return str(uuid.uuid1())
 
-
     @staticmethod
-    def stock_in(item, quantity, unit_cost, performed_by,
-                 expiry_date=None, received_date=None, notes=''):
-        '''
+    def stock_in(
+        item,
+        quantity,
+        unit_cost,
+        performed_by,
+        expiry_date=None,
+        received_date=None,
+        notes="",
+    ):
+        """
         handles stock in movement -- creating new lot and corresponding movement.
-        '''
+        """
 
         if received_date is None:
             received_date = date.today()
 
         auto_lot_number = InventoryService.generate_lot_number()
-        
+
         lot = Lot.objects.create(
-            item = item,
-            lot_number = auto_lot_number,
-            initial_quantity = quantity,
-            received_date = received_date,
-            expiry_date = expiry_date,
-            unit_cost = unit_cost,
+            item=item,
+            lot_number=auto_lot_number,
+            initial_quantity=quantity,
+            received_date=received_date,
+            expiry_date=expiry_date,
+            unit_cost=unit_cost,
         )
 
         movement = Movement.objects.create(
-            movement_type = 'IN',
-            lot = lot,
-            quantity = quantity,
-            purchase_price = unit_cost,
-            performed_by = performed_by,
-            notes = notes
+            movement_type="IN",
+            lot=lot,
+            quantity=quantity,
+            purchase_price=unit_cost,
+            performed_by=performed_by,
+            notes=notes,
             # date is set to auto_now_add in model
         )
 
         return lot, movement
-
-
 
     def stock_out(item, quantity, performed_by, notes=""):
         """
@@ -64,7 +67,7 @@ class InventoryService:
 
         # Get lots with available quantity
         available_lots = []
-        for lot in Lot.objects.filter(item=item).order_by('received_date'):
+        for lot in Lot.objects.filter(item=item).order_by("received_date"):
             if lot.available_quantity > 0:
                 available_lots.append(lot)
 
@@ -84,22 +87,24 @@ class InventoryService:
                 if quantity_to_take > 0:
                     movement = Movement.objects.create(
                         lot=lot,
-                        movement_type='OUT',
+                        movement_type="OUT",
                         quantity=quantity_to_take,
                         notes=notes,
-                        performed_by=performed_by
+                        performed_by=performed_by,
                         # date is set to auto_now_add in model
                     )
                     movements_created.append(movement)
                     remaining_quantity -= quantity_to_take
 
             if remaining_quantity > 0:
-                raise ValidationError(f"Insufficient stock. Short by {remaining_quantity} units")
+                raise ValidationError(
+                    f"Insufficient stock. Short by {remaining_quantity} units"
+                )
 
         return movements_created
 
 
-'''
+"""
     @staticmethod
     def stock_out(item, quantity, performed_by, notes=""):
         
@@ -142,4 +147,4 @@ class InventoryService:
             raise ValidationError(f"Insufficient stock. Short by {remaining_quantity} units")
         
         return movements_created
-'''
+"""
