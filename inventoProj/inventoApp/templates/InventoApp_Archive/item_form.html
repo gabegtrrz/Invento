@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Item Form
+{% endblock title %} 
+{% block content %}
+{% include "navs/nav.html" %}
+    <h1 class="text-center">Item Form</h1>
+    <form method="post" class='jumbotron m-3'>
+        {% csrf_token %}
+        {{form}}
+        {% comment %} no need to render.as_p because we use crispy bootstrap {% endcomment %}
+        <button type="submit" class='btn btn-success btn-block mt-4'>Save</button>
+    </form>
+{% endblock content %}

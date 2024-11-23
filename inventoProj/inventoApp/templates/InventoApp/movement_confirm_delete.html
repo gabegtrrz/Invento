@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Movement{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>Confirm Delete</h3>
+    </div>
+    <div class="card-body">
+        <p>Are you sure you want to delete this movement?</p>
+        <p><strong>Type:</strong> {{ object.get_movement_type_display }}</p>
+        <p><strong>Item:</strong> {{ object.lot.item.name }}</p>
+        <p><strong>Quantity:</strong> {{ object.quantity }}</p>
+        <p><strong>Date:</strong> {{ object.date }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'movement_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

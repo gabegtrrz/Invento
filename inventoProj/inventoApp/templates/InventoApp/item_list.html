@@ -1,38 +1,57 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}Inventory{% endblock title %}
 
+
+
 {% block content %}
-{% include "navs/nav_item_list.html" %}
-    <h1 class='text-center mb-3'>Inventory</h1>
-        <table class="table table-bordered table-striped table-wrap">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>SKU</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Supplier</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>{{ item.item_id }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.sku }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.supplier }}</td>
-                        <td style="text-align: center; white-space: nowrap">
-                            <a role='button' class=' btn-secondary btn-custom1' aria-pressed="false" href="{% url "item_update" item.item_id %}">Update</a>
-                            <a role='button' class='btn-custom-delete' aria-pressed="false" href="{% url "item_delete" item.item_id %}">Delete</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+{% comment %} {% include "navs/nav_item_list.html" %} {% endcomment %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Items</h2>
+    <a href="{% url 'item_create' %}" class="btn btn-primary">
+        <i class="fas fa-plus mr-2"></i>Add New Item
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Available Quantity</th>
+                <th>Min. Inventory</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.sku }}</td>
+                <td>{{ item.name }}</td>
+                <td>${{ item.price }}</td>
+                <td>{{ item.get_available_quantity }}</td>
+                <td>{{ item.minimum_inventory }}</td>
+                <td>
+                    <a href="{% url 'item_detail' item.pk %}" class="btn btn-sm btn-info">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'item_update' item.pk %}" class="btn btn-sm btn-warning">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'item_delete' item.pk %}" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No items found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-{% endblock content %}
+</div>
+{% endblock content%}
