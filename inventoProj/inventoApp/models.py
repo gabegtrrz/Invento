@@ -136,7 +136,7 @@ class Movement(models.Model):
         # evaluating (total of quantity move out in the past + quantity needed now) 
         # greater than what was quantity when first deposited.
         if self.movement_type == 'OUT':
-            past_lot_movements = Movement.object.filter(lot = self.lot, movement_type = 'OUT')
+            past_lot_movements = Movement.objects.filter(lot = self.lot, movement_type = 'OUT')
             total_num_past_out = sum(movement.quantity for movement in past_lot_movements)
             if total_num_past_out + self.quantity > self.lot.initial_quantity:
                 raise ValidationError(f"Insufficient quantity in lot {self.lot.lot_number}")
