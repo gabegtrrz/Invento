@@ -62,7 +62,8 @@ class Item_Model(models.Model):
         validators=[MinValueValidator(Decimal('0.00'))],
         null=True
     )
-
+    
+    @property
     def get_available_quantity(self):
         return sum(lot.available_quantity for lot in self.lots.all())
     
