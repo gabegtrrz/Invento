@@ -81,7 +81,10 @@ def logout_view(request):
 # CRUD Inventory Feature Views
 # ----------
 
-# READ VIEWS
+# ----------
+# ITEM VIEWS
+# ----------
+
 class ItemModelListView(LoginRequiredMixin, ListView):
     model = Item_Model
     template_name = 'templates/InventoApp/item_list.html'
@@ -96,19 +99,7 @@ class ItemModelDetailView(LoginRequiredMixin, DetailView):
         context['lots'] = self.object.lots.all()
         context['total_available'] = self.object.get_available_quantity()
         return context
-
-class MovementListView(LoginRequiredMixin, ListView):
-    model = Movement
-    # template_name = 'templates/InventoApp/movement_list.html'
-    context_object_name = 'movements'
-    paginate_by = 20
-
-    def get_queryset(self):
-        return Movement.objects.order_by('-date')
-
-# CREATE & UPDATE VIEWS
-
-# ITEM
+    
 class ItemModelCreateView(LoginRequiredMixin, CreateView):
     model = Item_Model
     form_class = ItemForm
@@ -119,7 +110,26 @@ class ItemModelUpdateView(LoginRequiredMixin,UpdateView):
     form_class = ItemForm
     template_name = 'templates/InventoApp/item_form.html'
 
-# MOVEMENTS (Stock In and Stock Out)
+class ItemDeleteView(DeleteView):
+    model = Item_Model
+    template_name = 'inventory/item_confirm_delete.html'
+    success_url = reverse_lazy('item_list')
+
+
+#  ----------
+# MOVEMENT VIEWS
+#  ----------
+
+class MovementListView(LoginRequiredMixin, ListView):
+    model = Movement
+    # template_name = 'templates/InventoApp/movement_list.html'
+    context_object_name = 'movements'
+    paginate_by = 20
+
+    def get_queryset(self):
+        return Movement.objects.order_by('-date')
+
+
 class StockInView(LoginRequiredMixin, FormView):
     template_name = 'templates/InventoApp/stock_in.html'
     form_class = StockInForm
@@ -166,9 +176,17 @@ class StockOutView(LoginRequiredMixin, FormView):
         
         return super().form_valid(form)
 
-    
 
-# LOT
+class MovementDeleteView(DeleteView):
+    model = Movement
+    template_name = 'inventory/movement_confirm_delete.html'
+    success_url = reverse_lazy('movement_list')
+
+
+# ----------
+# LOT VIEWS
+# ----------
+
 class LotUpdateView(LoginRequiredMixin, UpdateView):
     model = Lot
     form_class= LotForm
@@ -177,20 +195,11 @@ class LotUpdateView(LoginRequiredMixin, UpdateView):
 
 # DELETE VIEWS
 
-class ItemDeleteView(DeleteView):
-    model = Item_Model
-    template_name = 'inventory/item_confirm_delete.html'
-    success_url = reverse_lazy('item_list')
-
 class LotDeleteView(DeleteView):
     model = Lot
     template_name = 'inventory/lot_confirm_delete.html'
     success_url = reverse_lazy('lot_list')
 
-class MovementDeleteView(DeleteView):
-    model = Movement
-    template_name = 'inventory/movement_confirm_delete.html'
-    success_url = reverse_lazy('movement_list')
 
 
 
