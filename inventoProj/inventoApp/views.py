@@ -1,7 +1,8 @@
 # URLS
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+# issue: reverse_lazy not being read as a function
 
 # User Authentication Feature Imports
 from django.contrib.auth.models import User
@@ -102,7 +103,7 @@ class MovementListView(LoginRequiredMixin, ListView):
     context_object_name = 'movements'
     paginate_by = 20
 
-    def get_queryset(self) -> QuerySet[Any]:
+    def get_queryset(self):
         return Movement.objects.order_by('-date')
 
 # CREATE & UPDATE VIEWS
@@ -128,7 +129,14 @@ class StockInView(LoginRequiredMixin, FormView):
         try:
             with transaction.atomic():
                 lot, movement = InventoryService.stock_in(
-                    
+                    item=form.cleaned_data['item'],
+                    quantity=form.cleaned_data['quantity'],
+                    unit_cost=form.cleaned_data['unit_cost'],
+                    performed_by=self.request.user.username,
+                    expiry_date=form.cleaned_data.get('expiry_date'),
+                    received_date=form.cleaned_data['received_date'],
+                    notes=form.cleaned_data.get('notes', '') 
+                    # 2nd Param = default value 
                 )
 
         except Exception as e:
@@ -137,6 +145,27 @@ class StockInView(LoginRequiredMixin, FormView):
 
 
         return super().form_valid(form)
+
+class StockOutView(LoginRequiredMixin, FormView):
+    template_name='templates/InventoApp/stock_out.html'
+    form_class=StockOutForm
+    success_url=reverse_lazy('stock_out')
+    
+    def form_valid(self, form):
+        try:
+            with transaction.atomic():
+                movements_created = InventoryService.stock_out(
+                    item=form.cleaned_data['item'],
+                    quantity=form.cleaned_data['quantity'],
+                    notes=form.cleaned_data['notes','']
+                )
+                messages.success(self.request, f"Stock out successful. {len(movements_created)} lots used.")
+        except Exception as e:
+            messages.error(self.request, str(e))
+            return self.form_invalid(form)
+        
+        return super().form_valid(form)
+
     
 
 # LOT
