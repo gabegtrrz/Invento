@@ -1,10 +1,12 @@
 # URLS
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 # User Authentication Feature Imports
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 
@@ -18,6 +20,7 @@ from django.views.generic import (
 )
 from django.views.generic.edit import FormView
 from django.db import transaction
+from . services import InventoryService
 
 
 # App Classes
@@ -52,7 +55,6 @@ def register_view(request):
 
     return render(request, "accounts/register.html", {"form": form})
 
-
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -67,7 +69,6 @@ def login_view(request):
 
     return render(request, "accounts/login.html")
 
-
 def logout_view(request):
     if request.method == "POST":
         logout(request)
@@ -75,10 +76,82 @@ def logout_view(request):
         return redirect("login")
 
 
+# ----------
 # CRUD Inventory Feature Views
+# ----------
+
+# READ VIEWS
+class ItemModelListView(LoginRequiredMixin, ListView):
+    model = Item_Model
+    template_name = 'templates/InventoApp/item_list.html'
+    context_object_name = 'items'
+
+class ItemModelDetailView(LoginRequiredMixin, DetailView):
+    model = Item_Model
+    template_name = 'templates/InventoApp/item_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['lots'] = self.object.lots.all()
+        context['total_available'] = self.object.get_available_quantity()
+        return context
+
+class MovementListView(LoginRequiredMixin, ListView):
+    model = Movement
+    # template_name = 'templates/InventoApp/movement_list.html'
+    context_object_name = 'movements'
+    paginate_by = 20
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return Movement.objects.order_by('-date')
+
+# CREATE & UPDATE VIEWS
+
+# ITEM
+class ItemModelCreateView(LoginRequiredMixin, CreateView):
+    model = Item_Model
+    form_class = ItemForm
+    template_name = 'templates/InventoApp/item_form.html'
+
+class ItemModelUpdateView(LoginRequiredMixin,UpdateView):
+    model = Item_Model
+    form_class = ItemForm
+    template_name = 'templates/InventoApp/item_form.html'
+
+# MOVEMENTS (Stock In and Stock Out)
+class StockInView(LoginRequiredMixin, FormView):
+    template_name = 'templates/InventoApp/stock_in.html'
+    form_class = StockInForm
+    # success_url = reverse_lazy('stock_in')
+
+    def form_valid(self, form):
+        try:
+            with transaction.atomic():
+                lot, movement = InventoryService.stock_in(
+                    
+                )
+
+        except Exception as e:
+            messages.error(self.request, str(e))
+            return self.form_invalid(form)
 
 
-# Create View
+        return super().form_valid(form)
+    
+
+# LOT
+class LotUpdateView(LoginRequiredMixin, UpdateView):
+    model = Lot
+    form_class= LotForm
+    # template_name = 'templates/InventoApp/lot_form.html'
+
+
+
+
+
+
+
+'''
 @login_required
 def item_create_view(request):
     # this is where we want to instantiate/create an item RECORD/Object,
@@ -129,3 +202,5 @@ def item_delete_view(request, item_id):
         item.delete()
         return redirect("item_list")
     return render(request, "InventoApp/item_confirm_delete.html", {"item": item})
+
+'''
