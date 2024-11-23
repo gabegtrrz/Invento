@@ -87,17 +87,17 @@ def logout_view(request):
 
 class ItemModelListView(LoginRequiredMixin, ListView):
     model = Item_Model
-    template_name = 'templates/InventoApp/item_list.html'
+    template_name = 'InventoApp/item_list.html'
     context_object_name = 'items'
 
 class ItemModelCreateView(LoginRequiredMixin, CreateView):
     model = Item_Model
     form_class = ItemForm
-    template_name = 'templates/InventoApp/item_form.html'
+    template_name = 'InventoApp/item_form.html'
 
 class ItemModelDetailView(LoginRequiredMixin, DetailView):
     model = Item_Model
-    template_name = 'templates/InventoApp/item_detail.html'
+    template_name = 'InventoApp/item_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -109,11 +109,11 @@ class ItemModelDetailView(LoginRequiredMixin, DetailView):
 class ItemModelUpdateView(LoginRequiredMixin,UpdateView):
     model = Item_Model
     form_class = ItemForm
-    template_name = 'templates/InventoApp/item_form.html'
+    template_name = 'InventoApp/item_form.html'
 
 class ItemDeleteView(DeleteView):
     model = Item_Model
-    template_name = 'templates/InventoApp/item_confirm_delete.html'
+    template_name = 'InventoApp/item_confirm_delete.html'
     success_url = reverse_lazy('item_list')
 
 
@@ -123,7 +123,7 @@ class ItemDeleteView(DeleteView):
 
 class MovementListView(LoginRequiredMixin, ListView):
     model = Movement
-    # template_name = 'templates/InventoApp/movement_list.html'
+    # template_name = 'InventoApp/movement_list.html'
     context_object_name = 'movements'
     paginate_by = 20
 
@@ -132,7 +132,7 @@ class MovementListView(LoginRequiredMixin, ListView):
 
 
 class StockInView(LoginRequiredMixin, FormView):
-    template_name = 'templates/InventoApp/stock_in.html'
+    template_name = 'InventoApp/stock_in.html'
     form_class = StockInForm
     # success_url = reverse_lazy('stock_in')
 
@@ -158,7 +158,7 @@ class StockInView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 class StockOutView(LoginRequiredMixin, FormView):
-    template_name='templates/InventoApp/stock_out.html'
+    template_name='InventoApp/stock_out.html'
     form_class=StockOutForm
     success_url=reverse_lazy('stock_out')
     
@@ -180,7 +180,7 @@ class StockOutView(LoginRequiredMixin, FormView):
 
 class MovementDeleteView(DeleteView):
     model = Movement
-    template_name = 'templates/InventoApp/movement_confirm_delete.html'
+    template_name = 'InventoApp/movement_confirm_delete.html'
     success_url = reverse_lazy('movement_list')
 
 
@@ -189,7 +189,7 @@ class MovementDeleteView(DeleteView):
 # ----------
 class LotListView(ListView):
     model = Lot
-    template_name = "templates/InventoApp/lot_list.html"
+    template_name = "InventoApp/lot_list.html"
     context_object_name = 'lots'
     paginate_by = 20
 
@@ -197,14 +197,14 @@ class LotListView(ListView):
 class LotUpdateView(LoginRequiredMixin, UpdateView):
     model = Lot
     form_class= LotForm
-    # template_name = 'templates/InventoApp/lot_form.html'
+    # template_name = 'InventoApp/lot_form.html'
 
 
 # DELETE VIEWS
 
 class LotDeleteView(DeleteView):
     model = Lot
-    template_name = 'templates/InventoApp/lot_confirm_delete.html'
+    template_name = 'InventoApp/lot_confirm_delete.html'
     success_url = reverse_lazy('lot_list')
 
 
