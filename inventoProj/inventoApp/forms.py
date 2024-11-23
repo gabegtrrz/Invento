@@ -88,13 +88,13 @@ class LotForm(forms.ModelForm):
     initial_quantity = forms.DecimalField(
         max_digits=10,
         decimal_places=2,
-        decimalmin_value=0.01
+        min_value=0.01
     )
     
     unit_cost = forms.DecimalField(
         max_digits=10,
         decimal_places=2,
-        decimalmin_value=0.01
+        min_value=0.01
     )
     
     expiry_date = forms.DateField(required = False)
@@ -136,13 +136,13 @@ class StockInForm(forms.Form):
     quantity = forms.DecimalField(
         max_digits=10,
         decimal_places=2,
-        decimalmin_value=0.01
+        min_value=0.01
     )
 
     unit_cost = forms.DecimalField(
         max_digits=10,
         decimal_places=2,
-        decimalmin_value=0.01
+        min_value=0.01
     )
 
     received_date = forms.DateField(
