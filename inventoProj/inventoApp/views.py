@@ -51,6 +51,16 @@ def register_view(request):
             login(request, user)
             messages.success(request, "Registration Successful!")
             return redirect("item_list")
+        else:
+            # Collecting all form errors
+            error_messages = []
+            for field, errors in form.errors.items():
+                for error in errors:
+                    error_messages.append(f"{error}")
+
+            # Adding a comprehensive error message
+            messages.error(request,"<br>".join(error_messages))
+
     else:
         form = UserRegistrationForm()
 
@@ -98,6 +108,7 @@ class ItemModelCreateView(LoginRequiredMixin, CreateView):
 class ItemModelDetailView(LoginRequiredMixin, DetailView):
     model = Item_Model
     template_name = 'InventoApp/item_detail.html'
+    context_object_name = 'item'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
