@@ -34,7 +34,7 @@ urlpatterns = [
     path("movement/<int:pk>/delete", views.MovementDeleteView.as_view(), name="movement_delete"),
 
     # LOT URLS
-    path("lot-list/", views.LotListView.as_view(), name="lot_list")
+    path("lot-list/", views.LotListView.as_view(), name="lot_list"),
 
     path("lot/<int:pk/edit/", views.LotUpdateView.as_view(), name="lot_update"),
 
