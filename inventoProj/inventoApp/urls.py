@@ -36,7 +36,7 @@ urlpatterns = [
     # LOT URLS
     path("lot-list/", views.LotListView.as_view(), name="lot_list"),
 
-    path("lot/<int:pk/edit/", views.LotUpdateView.as_view(), name="lot_update"),
+    path("lot/<int:pk>/edit/", views.LotUpdateView.as_view(), name="lot_update"),
 
     path("lot/<int:pk>/delete/", views.LotDeleteView.as_view(), name="lot_delete"),
 ]
