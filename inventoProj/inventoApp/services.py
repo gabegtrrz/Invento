@@ -5,6 +5,7 @@ from . models import Lot, Movement
 import uuid
 from datetime import date
 from django.core.exceptions import ValidationError
+from django.db import transaction
 
 
 
@@ -54,11 +55,56 @@ class InventoryService:
 
         return lot, movement
 
+
+
+    def stock_out(item, quantity, performed_by, notes=""):
+        """
+        Handles stock out operation following FIFO principle.
+        """
+
+        # Get lots with available quantity
+        available_lots = []
+        for lot in Lot.objects.filter(item=item).order_by('received_date'):
+            if lot.available_quantity > 0:
+                available_lots.append(lot)
+
+        # Remaining_quantity will be the remaining needed quantity which we will subtract every quantity we gather from the lots
+        # The goal is to have 0 remaining
+        remaining_quantity = quantity
+        movements_created = []
+
+        with transaction.atomic():
+            for lot in available_lots:
+                if remaining_quantity <= 0:
+                    break
+
+                available_in_lot = lot.available_quantity
+                quantity_to_take = min(remaining_quantity, available_in_lot)
+
+                if quantity_to_take > 0:
+                    movement = Movement.objects.create(
+                        lot=lot,
+                        movement_type='OUT',
+                        quantity=quantity_to_take,
+                        notes=notes,
+                        performed_by=performed_by
+                        # date is set to auto_now_add in model
+                    )
+                    movements_created.append(movement)
+                    remaining_quantity -= quantity_to_take
+
+            if remaining_quantity > 0:
+                raise ValidationError(f"Insufficient stock. Short by {remaining_quantity} units")
+
+        return movements_created
+
+
+'''
     @staticmethod
-    def stock_out(item, quantity_needed, performed_by, notes=""):
-        '''
+    def stock_out(item, quantity, performed_by, notes=""):
+        
         handles stock out operation following FIFO principle.
-        '''
+        
 
         # Get lots with available quantity
         # order them by received_date (FIFO)
@@ -70,7 +116,7 @@ class InventoryService:
         # Remaining_quantity will be the remaining needed quantity which we will subtract every quantity we gather from the lots
         # The goal is to have 0 remaining
         # if Not zero -> error
-        remaining_quantity = quantity_needed
+        remaining_quantity = quantity
         movements_created = []
 
 
@@ -96,3 +142,4 @@ class InventoryService:
             raise ValidationError(f"Insufficient stock. Short by {remaining_quantity} units")
         
         return movements_created
+'''

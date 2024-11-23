@@ -32,6 +32,8 @@ class UserRegistrationForm(UserCreationForm):
 
 # Create/Update
 class ItemForm(forms.ModelForm):
+
+    
     class Meta:
         model = Item_Model
         fields = "__all__"
@@ -150,7 +152,8 @@ class StockInForm(forms.Form):
     )
 
     expiry_date = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'date'}),required=False
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        required=False
     )
 
     notes = forms.CharField(

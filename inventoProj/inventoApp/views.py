@@ -145,7 +145,7 @@ class MovementListView(LoginRequiredMixin, ListView):
 class StockInView(LoginRequiredMixin, FormView):
     template_name = 'InventoApp/stock_in.html'
     form_class = StockInForm
-    # success_url = reverse_lazy('stock_in')
+    success_url = reverse_lazy('stock_in')
 
     def form_valid(self, form):
         try:
@@ -179,7 +179,8 @@ class StockOutView(LoginRequiredMixin, FormView):
                 movements_created = InventoryService.stock_out(
                     item=form.cleaned_data['item'],
                     quantity=form.cleaned_data['quantity'],
-                    notes=form.cleaned_data['notes','']
+                    notes=form.cleaned_data.get('notes',''),
+                    performed_by=self.request.user.username,
                 )
                 messages.success(self.request, f"Stock out successful. {len(movements_created)} lots used.")
         except Exception as e:
@@ -208,7 +209,7 @@ class LotListView(ListView):
 class LotUpdateView(LoginRequiredMixin, UpdateView):
     model = Lot
     form_class= LotForm
-    # template_name = 'InventoApp/lot_form.html'
+    template_name = 'InventoApp/lot_form.html'
 
 
 # DELETE VIEWS
