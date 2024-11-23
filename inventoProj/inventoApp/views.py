@@ -90,6 +90,11 @@ class ItemModelListView(LoginRequiredMixin, ListView):
     template_name = 'templates/InventoApp/item_list.html'
     context_object_name = 'items'
 
+class ItemModelCreateView(LoginRequiredMixin, CreateView):
+    model = Item_Model
+    form_class = ItemForm
+    template_name = 'templates/InventoApp/item_form.html'
+
 class ItemModelDetailView(LoginRequiredMixin, DetailView):
     model = Item_Model
     template_name = 'templates/InventoApp/item_detail.html'
@@ -100,10 +105,6 @@ class ItemModelDetailView(LoginRequiredMixin, DetailView):
         context['total_available'] = self.object.get_available_quantity()
         return context
     
-class ItemModelCreateView(LoginRequiredMixin, CreateView):
-    model = Item_Model
-    form_class = ItemForm
-    template_name = 'templates/InventoApp/item_form.html'
 
 class ItemModelUpdateView(LoginRequiredMixin,UpdateView):
     model = Item_Model
