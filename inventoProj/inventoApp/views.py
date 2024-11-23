@@ -175,8 +175,35 @@ class LotUpdateView(LoginRequiredMixin, UpdateView):
     # template_name = 'templates/InventoApp/lot_form.html'
 
 
+# DELETE VIEWS
+
+class ItemDeleteView(DeleteView):
+    model = Item_Model
+    template_name = 'inventory/item_confirm_delete.html'
+    success_url = reverse_lazy('item_list')
+
+class LotDeleteView(DeleteView):
+    model = Lot
+    template_name = 'inventory/lot_confirm_delete.html'
+    success_url = reverse_lazy('lot_list')
+
+class MovementDeleteView(DeleteView):
+    model = Movement
+    template_name = 'inventory/movement_confirm_delete.html'
+    success_url = reverse_lazy('movement_list')
 
 
+
+'''
+# ITEM
+@login_required
+def item_delete_view(request, item_id):
+    item = Item_Model.objects.get(item_id=item_id)
+    if request.method == "POST":
+        item.delete()
+        return redirect("item_list")
+    return render(request, "InventoApp/item_confirm_delete.html", {"item": item})
+'''
 
 
 
@@ -223,13 +250,5 @@ def item_update_view(request, item_id):
     return render(request, "InventoApp/item_form.html", {"form": form})
 
 
-# Delete View
-@login_required
-def item_delete_view(request, item_id):
-    item = Item_Model.objects.get(item_id=item_id)
-    if request.method == "POST":
-        item.delete()
-        return redirect("item_list")
-    return render(request, "InventoApp/item_confirm_delete.html", {"item": item})
 
 '''
