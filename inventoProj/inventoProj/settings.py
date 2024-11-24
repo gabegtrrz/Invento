@@ -80,8 +80,12 @@ WSGI_APPLICATION = "inventoProj.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": 'invento_db',
+        'PASSWORD': 'john3.16',
+        'USER':'root',
+        'HOST': '127.0.0.1',
+        'PORT':'3306'
     }
 }
 
