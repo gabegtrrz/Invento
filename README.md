@@ -1,12 +1,12 @@
-###Project Name:
+### Project Name:
 **Inventó**
 Your Inventory Management Made Quick & Easy
 
-###Members:
+### Members:
 Gutierrez, Gabriel Louis (23000782010)
 Pacardo, John Christopher (22015347710)
 
-###What is Invento?
+### What is Invento?
 Inventó is a web-based inventory management system designed to streamline
 inventory tracking, reduce manual errors, and provide valuable insights to businesses.
 By automating inventory processes, the system aims to improve efficiency, reduce costs,
@@ -17,7 +17,7 @@ We are excited to deliver enhanced features that are most relevant and most usef
 target market.
 
 
-###Installation Instructions:
+### Installation Instructions:
 
 1. Clone this repo.
 2. Install requirements file.
@@ -45,7 +45,7 @@ target market.
 5. Run the development server.
 
 
-##_Hope it's not too bad :)_
+## _Hope it's not too bad :)_
 
 
    
