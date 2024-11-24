@@ -3,7 +3,7 @@
 Your Inventory Management Made Quick & Easy
 
 ### Members:
-Gutierrez, Gabriel Louis (23000782010)
+Gutierrez, Gabriel Louis (23000782010) <br>
 Pacardo, John Christopher (22015347710)
 
 ### What is Invento?
