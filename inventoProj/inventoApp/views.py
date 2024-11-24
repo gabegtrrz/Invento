@@ -116,7 +116,7 @@ class ItemModelDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["lots"] = self.object.lots.all()
-        context["total_available"] = self.object.get_available_quantity()
+        context["total_available"] = self.object.get_available_quantity
         return context
 
 

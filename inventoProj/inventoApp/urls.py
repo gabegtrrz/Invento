@@ -3,11 +3,19 @@ from . import views
 
 urlpatterns = [
     path("", views.index_view, name="index"),
+
+
     # USER AUTHENTICATION FEATURE
+
+    
     path("login/", views.login_view, name="login"),
     path("register/", views.register_view, name="register"),
     path("logout/", views.logout_view, name="logout"),
+
+
     # ITEM_MODEL URLS
+
+
     path("item_list/", views.ItemModelListView.as_view(), name="item_list"),
     path("item/new/", views.ItemModelCreateView.as_view(), name="item_create"),
     path("item/<int:pk>/", views.ItemModelDetailView.as_view(), name="item_detail"),
@@ -15,7 +23,11 @@ urlpatterns = [
         "item/<int:pk>/edit/", views.ItemModelUpdateView.as_view(), name="item_update"
     ),
     path("item/<int:pk>/delete/", views.ItemDeleteView.as_view(), name="item_delete"),
+    
+    
     # MOVEMENT URLS
+
+    
     path("movement_list/", views.MovementListView.as_view(), name="movement_list"),
     path("stock-in/", views.StockInView.as_view(), name="stock_in"),
     path("stock-out/", views.StockOutView.as_view(), name="stock_out"),

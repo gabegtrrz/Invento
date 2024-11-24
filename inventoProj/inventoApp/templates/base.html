@@ -21,7 +21,9 @@
     </style>
 </head>
 <body>
+
     <!-- Navbar -->
+
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #162521">
         <a class="navbar-brand" href="{% url 'index' %}">Inventó</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -54,23 +56,25 @@
     <div class="container-fluid">
         <div class="row">
             {% if user.is_authenticated %}
+            
             <!-- Sidebar -->
+
             <div class="col-md-2 sidebar py-3">
                 <div class="list-group">
                     <a href="{% url 'item_list' %}" class="list-group-item list-group-item-action">
-                        <i class="fas fa-boxes mr-2"></i>Items
+                        Items
                     </a>
                     <a href="{% url 'lot_list' %}" class="list-group-item list-group-item-action">
-                        <i class="fas fa-layer-group mr-2"></i>Lots
+                        Lots
                     </a>
                     <a href="{% url 'movement_list' %}" class="list-group-item list-group-item-action">
-                        <i class="fas fa-exchange-alt mr-2"></i>Movements
+                        Movements
                     </a>
                     <a href="{% url 'stock_in' %}" class="list-group-item list-group-item-action">
-                        <i class="fas fa-arrow-down mr-2"></i>Stock In
+                        Stock In
                     </a>
                     <a href="{% url 'stock_out' %}" class="list-group-item list-group-item-action">
-                        <i class="fas fa-arrow-up mr-2"></i>Stock Out
+                        Stock Out
                     </a>
                 </div>
             </div>

@@ -22,9 +22,12 @@
             </div>
             {% endfor %}
             <button type="submit" class="btn btn-warning">
-                <i class="fas fa-save mr-2"></i>Save Stock Out
+                <strong>Save Stock Out</strong>
             </button>
-            <a href="{% url 'movement_list' %}" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'movement_list' %}" class="btn btn-secondary">
+                <strong>Cancel</strong>
+
+            </a>
         </form>
     </div>
 </div>

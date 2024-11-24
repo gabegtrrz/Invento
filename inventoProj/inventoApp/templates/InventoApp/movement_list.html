@@ -8,10 +8,10 @@
 <div class="row mb-4">
     <div class="col-md-6">
         <a href="{% url 'stock_in' %}" class="btn btn-success mr-2">
-            <i class="fas fa-arrow-down mr-2"></i>Stock In
+            <strong>Stock In</strong>
         </a>
         <a href="{% url 'stock_out' %}" class="btn btn-warning">
-            <i class="fas fa-arrow-up mr-2"></i>Stock Out
+            <strong>Stock Out</strong>
         </a>
     </div>
 </div>
@@ -46,7 +46,7 @@
                 <td>{{ movement.notes|truncatechars:30 }}</td>
                 <td>
                     <a href="{% url 'movement_delete' movement.pk %}" class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash"></i>
+                        <strong>Delete</strong>
                     </a>
                 </td>
             </tr>
