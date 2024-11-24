@@ -1,8 +1,7 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% block title %}Register{% endblock title %}
 {% block content %}
-{% include "navs/nav.html" %}
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
@@ -14,7 +13,7 @@
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
-                                {{ message }}
+                                {{ message|safe }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

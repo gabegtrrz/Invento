@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Item Details</h3>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Name</dt>
+                    <dd class="col-sm-8">{{ object.name }}</dd>
+
+                    <dt class="col-sm-4">SKU</dt>
+                    <dd class="col-sm-8">{{ object.sku }}</dd>
+
+                    <dt class="col-sm-4">Price</dt>
+                    <dd class="col-sm-8">${{ object.price }}</dd>
+
+                    <dt class="col-sm-4">Available Quantity</dt>
+                    <dd class="col-sm-8">{{ total_available }}</dd>
+
+                    <dt class="col-sm-4">Minimum Inventory</dt>
+                    <dd class="col-sm-8">{{ object.minimum_inventory }}</dd>
+
+                    <dt class="col-sm-4">Unit Measure</dt>
+                    <dd class="col-sm-8">{{ object.unit_measure }}</dd>
+
+                    {% if object.weight_grams %}
+                    <dt class="col-sm-4">Weight</dt>
+                    <dd class="col-sm-8">{{ object.weight_grams }}g</dd>
+                    {% endif %}
+
+                    {% if object.length_cm or object.width_cm or object.height_cm %}
+                    <dt class="col-sm-4">Dimensions</dt>
+                    <dd class="col-sm-8">
+                        {{ object.length_cm|default:"0" }}x{{ object.width_cm|default:"0" }}x{{ object.height_cm|default:"0" }} cm
+                    </dd>
+                    {% endif %}
+                </dl>
+                <div class="mt-3">
+                    <a href="{% url 'item_update' object.pk %}" class="btn btn-warning">
+                        <strong>Edit</strong>
+                    </a>
+                    <a href="{% url 'item_delete' object.pk %}" class="btn btn-danger">
+                        <strong>Delete</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Lots</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Lot Number</th>
+                                <th>Received</th>
+                                <th>Available</th>
+                                <th>Expiry</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lot in lots %}
+                            <tr>
+                                <td>{{ lot.lot_number }}</td>
+                                <td>{{ lot.received_date }}</td>
+                                <td>{{ lot.available_quantity }}</td>
+                                <td>{{ lot.expiry_date|default:"-" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">No lots available</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
