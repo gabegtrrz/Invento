@@ -139,7 +139,7 @@ class ItemDeleteView(DeleteView):
 
 class MovementListView(LoginRequiredMixin, ListView):
     model = Movement
-    # template_name = 'InventoApp/movement_list.html'
+    template_name = 'InventoApp/movement_list.html'
     context_object_name = "movements"
     paginate_by = 20
 
