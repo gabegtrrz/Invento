@@ -80,8 +80,13 @@ WSGI_APPLICATION = "inventoProj.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://invento_postgres_user:qsTKClfgczydfKbJoXKXBfRrWIENZePO@dpg-ct1al5u8ii6s73fe5m6g-a.singapore-postgres.render.com/invento_postgres',
+        'NAME': 'invento_postgres',
+        'USER': 'invento_postgres_user',
+        'PASSWORD': 'qsTKClfgczydfKbJoXKXBfRrWIENZePO',
+        'HOST': 'dpg-ct1al5u8ii6s73fe5m6g-a',
+        'PORT': 5432,
     }
 }
 
