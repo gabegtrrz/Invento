@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-&mcg(+qgd7(52d)ruq)k7--!i__@n^zq&$ql8qa9f#&#p%z=hb"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -81,12 +82,12 @@ WSGI_APPLICATION = "inventoProj.wsgi.application"
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://invento_postgres_user:qsTKClfgczydfKbJoXKXBfRrWIENZePO@dpg-ct1al5u8ii6s73fe5m6g-a.singapore-postgres.render.com/invento_postgres',
-        'NAME': 'invento_postgres',
-        'USER': 'invento_postgres_user',
-        'PASSWORD': 'qsTKClfgczydfKbJoXKXBfRrWIENZePO',
-        'HOST': 'dpg-ct1al5u8ii6s73fe5m6g-a',
-        'PORT': 5432,
+        'URL': config('POSTGRES_URL'),
+        'NAME': config('PGNAME'),
+        'USER': config('PGUSER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('PGHOST'),
+        'PORT': config('PGPORT'),
     }
 }
 
