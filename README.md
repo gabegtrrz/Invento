@@ -14,7 +14,7 @@ and enhance decision-making.
 
 ### _Invento does FIFO_
 
-This is in it's prototype phase, and this current version is its MVP.
+This is in the prototype phase, and this current version is its MVP.
 We are excited to deliver enhanced features that are most relevant and most useful to the
 target market.
 
