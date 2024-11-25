@@ -10,9 +10,11 @@ Your Inventory Management Made Quick & Easy
 Inventó is a web-based inventory management system designed to streamline
 inventory tracking, reduce manual errors, and provide valuable insights to businesses.
 By automating inventory processes, the system aims to improve efficiency, reduce costs,
-and enhance decision-making.
+and enhance decision-making. 
 
-It is in it's prototype phase, and this current version is its MVP.
+### _Invento does FIFO_
+
+This is in it's prototype phase, and this current version is its MVP.
 We are excited to deliver enhanced features that are most relevant and most useful to the
 target market.
 
