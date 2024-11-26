@@ -164,4 +164,4 @@ class Movement(models.Model):
                 )
 
     def __str__(self):
-        return f"{self.get_movement_type_display()} - {self.lot} - {self.quantity}"
+        return f"{self.get_movement_type_display()} - {self.lot.item} - {self.quantity} {self.lot.item.unit_measure}"
