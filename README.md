@@ -53,7 +53,7 @@ _I (Jesus) have come so that they would have life, and have it abundantly._ <br>
 _John 10:10_
 <br>
 <br>
-> “You weren't put on earth to be remembered. You were put here to prepare for eternity.”
+> “You weren't put on earth to be remembered. You were put here to prepare for eternity.” <br>
 > ― Rick Warren, The Purpose Driven Life: What on Earth am I Here For?
 
 
