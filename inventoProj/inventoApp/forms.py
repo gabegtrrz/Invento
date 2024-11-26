@@ -68,16 +68,16 @@ class ItemForm(forms.ModelForm):
                 attrs={"placeholder": "Minimum Inventory", "class": "form-control"}
             ),
             "weight_grams": forms.NumberInput(
-                attrs={"placeholder": "Weight in grams", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
             "length_cm": forms.NumberInput(
-                attrs={"placeholder": "Length in centimeters", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
             "width_cm": forms.NumberInput(
-                attrs={"placeholder": "Width in centimeters", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
             "height_cm": forms.NumberInput(
-                attrs={"placeholder": "Height in centimeters", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
         }
     
