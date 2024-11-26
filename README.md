@@ -45,9 +45,15 @@ target market.
 4. Apply Migrations.
 5. Run the development server.
 
+<br>
+<br>
 
-## _Hope it's not too bad :)_
-Feel free to ask. Enjoy.
+_The thief comes only to steal and kill and destroy;_
+_I (Jesus) have come so that they would have life, and have it abundantly._
+_John 10:10_
+
+> “You weren't put on earth to be remembered. You were put here to prepare for eternity.”
+> ― Rick Warren, The Purpose Driven Life: What on Earth am I Here For?
 
 
    
