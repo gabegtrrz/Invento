@@ -3,8 +3,7 @@
 Your Inventory Management Made Quick & Easy
 
 ### Members:
-- Gutierrez, Gabriel Louis (23000782010) <br>
-- Pacardo, John Christopher (22015347710)
+- Gutierrez, Gabriel Louis (23000782010)
 
 ### What is Invento?
 Inventó is a web-based inventory management system designed to streamline
