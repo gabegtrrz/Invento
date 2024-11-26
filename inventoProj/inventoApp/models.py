@@ -27,13 +27,13 @@ class User(AbstractUser):
 
 class Item_Model(models.Model):
     UNIT_MEASURES = [
-        ('units','Units (pcs)'),
-        ('packs','Packs (pks)'),
-        ('sets','Sets'),
-        ('cases','Cases (cs)'),
-        ('boxes'),('Boxes (bx)'),
-        ('kilograms','Kilograms (kg)'),
-        ('meters','Meters (m)'),
+        ('units', 'Units (pcs)'),
+        ('packs', 'Packs (pks)'),
+        ('sets', 'Sets'),
+        ('cases', 'Cases (cs)'),
+        ('boxes', 'Boxes (bx)'),
+        ('kilograms', 'Kilograms (kg)'),
+        ('meters', 'Meters (m)'),
         ('liters', 'Liters (l)'),
 
     ]
