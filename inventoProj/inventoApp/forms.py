@@ -80,6 +80,15 @@ class ItemForm(forms.ModelForm):
                 attrs={"placeholder": "Height in centimeters", "class": "form-control"}
             ),
         }
+    
+    def __init__(self, *args, **kwargs):
+        super(ItemForm, self).__init__(*args, **kwargs)
+        optional_fields = ['weight_grams', 'length_cm', 'width_cm', 'height_cm'
+        ]
+        for field in optional_fields:
+            self.fields[field].required = False
+            # The self.fields dictionary contains all the fields of the form keyed by their names.
+            # By accessing self.fields[field], wer get the field instance corresponding to the name in the list we made (optional_fields).
 
 
 class LotForm(forms.ModelForm):
