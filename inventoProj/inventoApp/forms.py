@@ -33,11 +33,6 @@ class UserRegistrationForm(UserCreationForm):
 
 # Create/Update
 class ItemForm(forms.ModelForm):
-    unit_measure = forms.ModelChoiceField(
-        Item_Model.UNIT_MEASURES,
-        widget=forms.Select(attrs={"class":"form-control"})
-    )
-    
     class Meta:
         model = Item_Model
         fields = "__all__"
