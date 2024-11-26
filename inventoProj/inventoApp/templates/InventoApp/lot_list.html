@@ -22,7 +22,17 @@
         <tbody>
             {% for lot in lots %}
             <tr>
-                <td>{{ lot.lot_number }}</td>
+                <td> 
+                    <span class="lot-number-short">
+                        {{ lot.lot_number|slice:":5" }}...
+                    </span> 
+                    <span class="lot-number-full" style="display: none;">
+                        {{ lot.lot_number }}
+                    </span> 
+                    <a href="#" class="toggle-lot-number">
+                        <i class="fas fa-caret-down"></i>
+                    </a> 
+                </td>
                 <td>{{ lot.item.name }}</td>
                 <td>{{ lot.received_date }}</td>
                 <td>{{ lot.expiry_date|default:"-" }}</td>
@@ -30,11 +40,8 @@
                 <td>{{ lot.available_quantity }}</td>
                 <td>${{ lot.unit_cost }}</td>
                 <td>
-                    <a href="{% url 'lot_update' lot.pk %}" class="btn btn-sm btn-warning">
-                        <strong>Edit</strong>
-                    </a>
                     <a href="{% url 'lot_delete' lot.pk %}" class="btn btn-sm btn-danger">
-                        <strong>Delete</strong>
+                        <i class="fas fa-trash"></i>
                     </a>
                 </td>
             </tr>
@@ -70,4 +77,28 @@
     </ul>
 </nav>
 {% endif %}
+
+<script>
+    $(document).ready(function() {
+        $('.toggle-lot-number').click(function(event) {
+            event.preventDefault();
+            var short = $(this).siblings('.lot-number-short');
+            var full = $(this).siblings('.lot-number-full');
+            var icon = $(this).find('i');
+            if (full.is(':hidden')) {
+                full.show();
+                short.hide();
+                icon.removeClass('fa-caret-down').addClass('fa-caret-up');
+            } else {
+                full.hide();
+                short.show();
+                icon.removeClass('fa-caret-up').addClass('fa-caret-down');
+            }
+        });
+    });
+</script>
+
+
 {% endblock %}
+
+

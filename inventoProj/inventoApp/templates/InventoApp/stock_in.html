@@ -22,9 +22,11 @@
             </div>
             {% endfor %}
             <button type="submit" class="btn btn-success">
-                <strong>Save Stock In</strong>
+                <i class="fas fa-save mr-2"></i><strong>Save Stock In</strong>
             </button>
-            <a href="{% url 'movement_list' %}" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'movement_list' %}" class="btn btn-secondary">
+                <strong>Cancel</strong>
+            </a>
         </form>
     </div>
 </div>

@@ -33,7 +33,6 @@ class UserRegistrationForm(UserCreationForm):
 
 # Create/Update
 class ItemForm(forms.ModelForm):
-
     class Meta:
         model = Item_Model
         fields = "__all__"
@@ -59,9 +58,9 @@ class ItemForm(forms.ModelForm):
             "price": forms.NumberInput(
                 attrs={"placeholder": "Price", "class": "form-control"}
             ),
-            "unit_measure": forms.TextInput(
+            "unit_measure": forms.Select(
                 attrs={
-                    "placeholder": "e.g. boxes, units, kilograms, etc.",
+                    "placeholder": "(e.g. units, kilograms, etc.)",
                     "class": "form-control",
                 }
             ),
@@ -69,18 +68,27 @@ class ItemForm(forms.ModelForm):
                 attrs={"placeholder": "Minimum Inventory", "class": "form-control"}
             ),
             "weight_grams": forms.NumberInput(
-                attrs={"placeholder": "Weight in grams", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
             "length_cm": forms.NumberInput(
-                attrs={"placeholder": "Length in centimeters", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
             "width_cm": forms.NumberInput(
-                attrs={"placeholder": "Width in centimeters", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
             "height_cm": forms.NumberInput(
-                attrs={"placeholder": "Height in centimeters", "class": "form-control"}
+                attrs={"placeholder": "(optional)", "class": "form-control"}
             ),
         }
+    
+    def __init__(self, *args, **kwargs):
+        super(ItemForm, self).__init__(*args, **kwargs)
+        optional_fields = ['weight_grams', 'length_cm', 'width_cm', 'height_cm'
+        ]
+        for field in optional_fields:
+            self.fields[field].required = False
+            # The self.fields dictionary contains all the fields of the form keyed by their names.
+            # By accessing self.fields[field], wer get the field instance corresponding to the name in the list we made (optional_fields).
 
 
 class LotForm(forms.ModelForm):

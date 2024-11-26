@@ -165,6 +165,7 @@ class StockInView(LoginRequiredMixin, FormView):
                     notes=form.cleaned_data.get("notes", ""),
                     # 2nd Param = default value
                 )
+                messages.success(self.request, f"Success! {movement}")
 
         except Exception as e:
             messages.error(self.request, str(e))

@@ -26,6 +26,18 @@ class User(AbstractUser):
 
 
 class Item_Model(models.Model):
+    UNIT_MEASURES = [
+        ('units', 'Units (pcs)'),
+        ('packs', 'Packs (pks)'),
+        ('sets', 'Sets'),
+        ('cases', 'Cases (cs)'),
+        ('boxes', 'Boxes (bx)'),
+        ('kilograms', 'Kilograms (kg)'),
+        ('meters', 'Meters (m)'),
+        ('liters', 'Liters (l)'),
+
+    ]
+
     name = models.CharField(max_length=100)
     sku = models.CharField(max_length=50, unique=True)
     price = models.DecimalField(
@@ -37,7 +49,7 @@ class Item_Model(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # Descriptive Attributes
-    unit_measure = models.CharField(max_length=20)
+    unit_measure = models.CharField(max_length=20, choices=UNIT_MEASURES)
     weight_grams = models.DecimalField(
         max_digits=10,
         decimal_places=5,
@@ -152,4 +164,4 @@ class Movement(models.Model):
                 )
 
     def __str__(self):
-        return f"{self.get_movement_type_display()} - {self.lot} - {self.quantity}"
+        return f"{self.get_movement_type_display()} - {self.lot.item} - {self.quantity} {self.lot.item.unit_measure}"
