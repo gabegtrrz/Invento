@@ -49,7 +49,7 @@ target market.
 <br>
 
 _The thief comes only to steal and kill and destroy;_ <br> 
-_I (Jesus) have come so that they would have life, and have it abundantly._
+_I (Jesus) have come so that they would have life, and have it abundantly._ <br>
 _John 10:10_
 <br>
 <br>
