@@ -40,9 +40,6 @@
                 <td>{{ lot.available_quantity }}</td>
                 <td>${{ lot.unit_cost }}</td>
                 <td>
-                    <a href="{% url 'lot_update' lot.pk %}" class="btn btn-sm btn-warning">
-                        <i class="fas fa-edit"></i>
-                    </a>
                     <a href="{% url 'lot_delete' lot.pk %}" class="btn btn-sm btn-danger">
                         <i class="fas fa-trash"></i>
                     </a>
