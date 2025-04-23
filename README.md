@@ -1,11 +1,7 @@
 
 ## Inventó: A Reusable FIFO Inventory Module for Django
 
------
-
-**Tagline:** Seamlessly integrate First-In, First-Out (FIFO) inventory management into your Django projects.
-
-*Effectively translating the complex FIFO inventory business need into a reusable, pluggable software module, and incorporating features like UUIDv1 for audit-proof tracking, significantly enhanced my understanding of designing robust, business-aligned applications.*
+Full-Stack Django Module for Streamlined & Auditable FIFO Inventory.
 
 
 
@@ -26,9 +22,7 @@
 
 ### **Project Overview**
 
-Inventó is a full-stack web application built on the Django framework, specifically designed as a **reusable module** for implementing **First-In, First-Out (FIFO)** inventory management.
-
-Unlike generic inventory systems, Inventó focuses on providing robust, accurate FIFO logic right out-of-the-box. It's engineered for easy integration into new or existing Django applications, allowing developers to quickly add sophisticated inventory tracking without reinventing the wheel. This project demonstrates expertise in full-stack web development, database design for complex transactions (like FIFO), and building modular, maintainable software components.
+ Inventó is a full-stack Django web module designed for precise First-In, First-Out (FIFO) inventory control. Moving beyond simple stock counts, it tackles the technical challenge of implementing and maintaining accurate chronological inventory tracking. The system was architected with a pluggable design philosophy, enabling easy integration into various Django applications. Key features include detailed lot management with built-in auditability via traceable UUIDv1 unique identifiers, providing essential traceability and security for stock transactions. Building this project showcases proficiency in full-stack web development (covering both frontend and backend), tackling specific and complex business logic implementation, designing robust database schemas, and developing reusable, reliable software components tailored for real-world application.
 
 -----
 
