@@ -1,13 +1,13 @@
 
 ## Inventó: A Reusable FIFO Inventory Module for Django
 
-*(A title that immediately tells them what it is and its key feature)*
-
 -----
 
 **Tagline:** Seamlessly integrate First-In, First-Out (FIFO) inventory management into your Django projects.
 
-*(Short, impactful statement)*
+*Effectively translating the complex FIFO inventory business need into a reusable, pluggable software module, and incorporating features like UUIDv1 for audit-proof tracking, significantly enhanced my understanding of designing robust, business-aligned applications.*
+
+
 
 -----
 
