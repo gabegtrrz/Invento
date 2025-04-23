@@ -10,37 +10,46 @@
                 <h3>Item Details</h3>
             </div>
             <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-4">Name</dt>
-                    <dd class="col-sm-8">{{ object.name }}</dd>
-
-                    <dt class="col-sm-4">SKU</dt>
-                    <dd class="col-sm-8">{{ object.sku }}</dd>
-
-                    <dt class="col-sm-4">Price</dt>
-                    <dd class="col-sm-8">{{ object.price }}</dd>
-
-                    <dt class="col-sm-4">Total Available Quantity</dt>
-                    <dd class="col-sm-8">{{ total_available }}</dd>
-
-                    <dt class="col-sm-4">Minimum Inventory</dt>
-                    <dd class="col-sm-8">{{ object.minimum_inventory }}</dd>
-
-                    <dt class="col-sm-4">Unit Measure</dt>
-                    <dd class="col-sm-8">{{ object.unit_measure }}</dd>
-
-                    {% if object.weight_grams %}
-                    <dt class="col-sm-4">Weight</dt>
-                    <dd class="col-sm-8">{{ object.weight_grams }}g</dd>
-                    {% endif %}
-
-                    {% if object.length_cm or object.width_cm or object.height_cm %}
-                    <dt class="col-sm-4">Dimensions</dt>
-                    <dd class="col-sm-8">
-                        {{ object.length_cm|default:"0" }}x{{ object.width_cm|default:"0" }}x{{ object.height_cm|default:"0" }} cm
-                    </dd>
-                    {% endif %}
-                </dl>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ object.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>SKU</th>
+                            <td>{{ object.sku }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ object.price }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Available Quantity</th>
+                            <td>{{ total_available }}</td>
+                        </tr>
+                        <tr>
+                            <th>Minimum Inventory</th>
+                            <td>{{ object.minimum_inventory }}</td>
+                        </tr>
+                        <tr>
+                            <th>Unit Measure</th>
+                            <td>{{ object.unit_measure }}</td>
+                        </tr>
+                        {% if object.weight_grams %}
+                        <tr>
+                            <th>Weight</th>
+                            <td>{{ object.weight_grams }}g</td>
+                        </tr>
+                        {% endif %}
+                        {% if object.length_cm or object.width_cm or object.height_cm %}
+                        <tr>
+                            <th>Dimensions</th>
+                            <td>{{ object.length_cm|default:"0" }}x{{ object.width_cm|default:"0" }}x{{ object.height_cm|default:"0" }} cm</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
                 <div class="mt-3">
                     <a href="{% url 'item_update' object.pk %}" class="btn btn-warning">
                         <i class="fas fa-edit mr-2"></i>Edit
@@ -49,7 +58,7 @@
                         <i class="fas fa-trash mr-2"></i>Delete
                     </a>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
 
