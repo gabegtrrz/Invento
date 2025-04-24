@@ -3,6 +3,8 @@
 
 Full-Stack Django Module for Streamlined & Auditable FIFO Inventory.
 
+-----
+
 **Here's the Web App deployed on the cloud:**
 https://gabegtrrz1.pythonanywhere.com/login/
 
