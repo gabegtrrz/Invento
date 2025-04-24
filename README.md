@@ -85,25 +85,16 @@ Full-Stack Django Module for Streamlined & Auditable FIFO Inventory.
     pip install -r requirements.txt
     ```
 
-4.  **Database Configuration (MySQL):**
-      * Ensure you have a MySQL server running.
+4.  **Configure Environment Variables**
+To run this project, you'll need to set up environment variables. This keeps sensitive information secure and allows for environment-specific configurations.
 
-      * Create a database for the project (e.g., `CREATE DATABASE invento_db;`).
+Local Development:
 
-      * Update the `DATABASES` setting in `your_project_name/settings.py` with your MySQL database name, user, and password:
+Create a .env file in the project's root directory.
 
-        ```python
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'your_database_name',     # e.g., invento_db
-                'USER': 'your_mysql_user',
-                'PASSWORD': 'your_mysql_password',
-                'HOST': 'localhost',             # Or your database server's IP/hostname
-                'PORT': '3306',                  # Default MySQL port
-            }
-        }
-        ```
+Add your variables to .env in the format KEY=VALUE (e.g., SECRET_KEY=your_dev_key, DATABASE_NAME=dev_db).
+
+Important: Ensure .env is in your .gitignore file.
 
 
 5.  **Apply Migrations:**
