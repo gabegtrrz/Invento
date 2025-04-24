@@ -7,7 +7,9 @@ Full-Stack Django Module for Streamlined & Auditable FIFO Inventory.
 https://gabegtrrz1.pythonanywhere.com/login/
 
 **Credentials:**
+
 `username:` user
+
 `password:` jeremiah29.11
 
 
