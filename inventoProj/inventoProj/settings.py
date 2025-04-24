@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-&mcg(+qgd7(52d)ruq)k7--!i__@n^zq&$ql8qa9f#&#p%z=hb"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,11 +78,11 @@ WSGI_APPLICATION = "inventoProj.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": 'invento_db',
-        'PASSWORD': 'john3.16',
-        'USER':'root',
-        'HOST': '127.0.0.1',
-        'PORT':'3306'
+        "NAME": config('DATABASE_NAME'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'USER': config('USER'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT')
     }
 }
 
